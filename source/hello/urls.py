@@ -18,9 +18,15 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
+from api.views import add_api, divide_api, subtract_api, multiply_api, api_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('', include('webapp.urls')),
+    path('add/', add_api, name='add'),
+    path('subtract/', subtract_api, name='subtract'),
+    path('multiply/', multiply_api, name='multiply'),
+    path('divide/', divide_api, name='divide'),
+    path('api/', api_view, name='api'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
