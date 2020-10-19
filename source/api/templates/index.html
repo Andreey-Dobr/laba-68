@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-
+{% csrf_token %}
 <p><b>число</b><br>
    <input type="number" size="40">
   </p>
@@ -20,10 +20,13 @@
 
 
 
-<button><a href="#">add</a></button>
+
+<button><a href="#" id="click_me">add</a></button>
 <button><a href="#">subtract</a></button>
 <button><a href="#">multiply</a></button>
 <button><a href="#">divide</a></button>
+
+<script src="{% static "js/api.js" %}"></script>
 
 </body>
 </html>

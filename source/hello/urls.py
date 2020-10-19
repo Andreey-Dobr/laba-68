@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from api.views import add_api, divide_api, subtract_api, multiply_api, api_view
+from api_v2.views import ArticleListView, ArticleDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +30,9 @@ urlpatterns = [
     path('multiply/', multiply_api, name='multiply'),
     path('divide/', divide_api, name='divide'),
     path('api/', api_view, name='api'),
+
+
+    path('api-auth/', include('rest_framework.urls')),
+    path('articlelist/', ArticleListView.as_view(), name='articlelist'),
+    path('articlelist/<int:pk>', ArticleDetailView.as_view(), name='articledetail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

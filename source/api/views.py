@@ -6,8 +6,11 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
 def api_view(request):
-
-    return render(request, 'index.html')
+    if request.method == "POST" and request.is_ajax():
+        form = ContactForm(request.POST)
+        form.save()
+        return JsonResponse({"success":True}, status=200)
+    return JsonResponse({"success":False}, status=400)
 
 
 
@@ -40,12 +43,6 @@ def add_api(request, *args, **kwargs):
     response = HttpResponse(answer_as_json)
     response['Content-Type'] = 'application/json'
     return response
-
-
-
-
-
-
 
 
 def subtract_api(request, *args, **kwargs):
